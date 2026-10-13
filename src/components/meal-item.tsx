@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { deleteMeal } from "@/libs/storage";
+import { Alert, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type MealItemProps = {
   name: string;
@@ -6,6 +7,8 @@ type MealItemProps = {
   protein: number;
   carbs: number;
   fat: number;
+  id: string;
+  onDelete: () => void;
 };
 
 export default function MealItem({
@@ -14,14 +17,30 @@ export default function MealItem({
   protein,
   carbs,
   fat,
+  id,
+  onDelete,
 }: MealItemProps) {
+  function handleLongPress() {
+    Alert.alert("Delete Meal", `Are you sure you want to delete "${name}"?`, [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: async () => {
+          await deleteMeal(id);
+          onDelete();
+        },
+      },
+    ]);
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onLongPress={handleLongPress}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.macros}>
         {calories} cal • {protein}g P • {carbs}g C • {fat}g F
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

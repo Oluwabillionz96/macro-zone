@@ -13,7 +13,6 @@ export default function HomeScreen() {
   const loadMeal = async () => {
     const data = await getMeals();
     setMeals(data);
-    console.log("Loaded Meal", data);
   };
   useFocusEffect(
     useCallback(() => {
@@ -25,8 +24,8 @@ export default function HomeScreen() {
     <ScrollView style={globalStyles.container}>
       <Text style={globalStyles.title}>MacroZone</Text>
       <HomeHeader />
-      <MacroGrid />
-      <RecentMeals meals={meals} />
+      <MacroGrid meals={meals} />
+      <RecentMeals meals={meals} onDelete={loadMeal} />
     </ScrollView>
   );
 }

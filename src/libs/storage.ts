@@ -29,3 +29,9 @@ export const addMeal = async (
   await AsyncStorage.setItem(MEALS_KEY, JSON.stringify([newMeal, ...meals]));
   return newMeal;
 };
+
+export const deleteMeal = async (id: string) => {
+  const meals = await getMeals();
+  const filtered = meals.filter((m) => m.id !== id);
+  await AsyncStorage.setItem(MEALS_KEY, JSON.stringify(filtered));
+};
