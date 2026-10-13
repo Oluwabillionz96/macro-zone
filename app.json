@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "macro-zone",
-    "slug": "macro-zone",
+    "slug": "macrozone",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -34,11 +34,21 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "eb5201ec-60cb-4434-9eab-f48399e22441"
+      }
+    },
+    "owner": "oluwabillionz"
   }
 }
