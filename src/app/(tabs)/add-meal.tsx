@@ -1,5 +1,6 @@
 import { addMeal } from "@/libs/storage";
 import { colors, globalStyles } from "@/styles/global";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -20,6 +21,7 @@ export default function AddMealScreen() {
 
   const handleAddMeal = async () => {
     if (!name || !calories) {
+      await notificationAsync(NotificationFeedbackType.Warning);
       Alert.alert("Error", "Please Enter meal name and calories");
       return;
     }
@@ -38,6 +40,7 @@ export default function AddMealScreen() {
     setCarbs("");
     setFat("");
 
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     Alert.alert("Success", "Meal Added Successfully");
     router.push("/");
   };

@@ -1,6 +1,7 @@
 import MealItem from "@/components/meal-item";
 import { getMeals, Meal, removeAllMeals } from "@/libs/storage";
 import { globalStyles } from "@/styles/global";
+import { notificationAsync, NotificationFeedbackType } from "expo-haptics";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import {
@@ -21,6 +22,7 @@ export default function MealsScreen() {
 
   async function handleClearAll() {
     await removeAllMeals();
+    await notificationAsync(NotificationFeedbackType.Success);
     loadMeals();
   }
 
