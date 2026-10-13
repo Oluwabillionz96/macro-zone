@@ -35,3 +35,7 @@ export const deleteMeal = async (id: string) => {
   const filtered = meals.filter((m) => m.id !== id);
   await AsyncStorage.setItem(MEALS_KEY, JSON.stringify(filtered));
 };
+
+export async function removeAllMeals() {
+  await AsyncStorage.removeItem(MEALS_KEY);
+}

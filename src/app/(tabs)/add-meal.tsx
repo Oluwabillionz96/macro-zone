@@ -43,7 +43,9 @@ export default function AddMealScreen() {
   };
 
   return (
-    <View style={globalStyles.container}>
+    <View
+      style={[globalStyles.container, { paddingInline: 20, paddingTop: 60 }]}
+    >
       <Text style={globalStyles.title}>Add Meal</Text>
 
       <TextInput
